@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editor
+.idea/
+
+# Vector store - rebuildable by re-ingesting the PDFs
+chroma_db/
+chroma.sqlite3
+
+# Machine-local config (llm_model, temperature, top_k...)
+settings.json
+
+# Source documents - large binaries, not source code
+pdfs/*.pdf
+
+# Docs stay local; only the README is tracked
+*.md
+!README.md
