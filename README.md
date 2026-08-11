@@ -10,18 +10,24 @@ instead of guessing.
 
 ## Status
 
-Working today: a terminal app (`rag.py`) to create subjects, load PDFs into them and
-ask questions.
+Both interfaces work.
 
-Being built: a local web interface -- same engine, opened in the browser, with live
-streamed answers, the sources on screen, and a status panel for models and
-collections.
+**Web** (`run_web.py`) -- opens a tab on `127.0.0.1:8000`: ask a question and watch
+the answer being written, with the sources it used listed before it starts; a panel
+showing whether Ollama is up, which models are installed and what each subject
+holds; a model picker; subject creation with its own chunk size; and PDF upload
+with a progress bar. Nothing is served beyond your own machine.
+
+**Terminal** (`rag.py`) -- the same engine behind an arrow-key menu. Kept as a
+fallback. Only run one of the two at a time: the vector store is SQLite.
 
 ## How it is put together
 
 - `rag_core/` -- the engine: config, vector store, ingestion, chain, health checks.
-  No terminal output; the CLI and the future web server both drive it.
+  No terminal output; both interfaces drive it.
+- `web/` -- FastAPI routes, one HTML page, one JS file, one CSS file. No build step.
 - `rag.py` -- the terminal client.
+- `run_web.py` -- starts the server and opens the browser.
 
 ## Tools
 
@@ -32,7 +38,7 @@ collections.
 | **LangChain** | retrieval chain and the PDF/text splitting pipeline |
 | **pypdf** | reads the PDFs |
 | **questionary** | the arrow-key terminal menu |
-| **FastAPI + Jinja2 + SSE** | the web interface (in progress) |
+| **FastAPI + Jinja2 + SSE** | the web interface |
 
 Python 3.12, dependencies managed with `uv`.
 
@@ -43,7 +49,11 @@ Ollama has to be running, with the models pulled:
 ```powershell
 ollama pull nomic-embed-text
 ollama pull qwen3:14b
-.venv\Scripts\python.exe rag.py
+.venv\Scripts\python.exe run_web.py
 ```
 
-Drop your PDFs in `pdfs/`, create a subject, add a PDF to it, then ask away.
+That opens the app in your browser. Create a subject, upload a PDF into it, wait
+for the bar, then ask away. `--port` moves it; `--no-browser` leaves the tab alone.
+
+For the terminal version instead, run `.venv\Scripts\python.exe rag.py`. Either way
+you can also just drop PDFs straight into `pdfs/` and they show up.

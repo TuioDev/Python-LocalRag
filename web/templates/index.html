@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local RAG</title>
+  <!-- Empty favicon: the browser would otherwise ask for one on every load and
+       log a 404 in a server that is supposed to be quiet. -->
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Local RAG <span class="subtitle">Ollama + Chroma, on this machine</span></h1>
+  <div class="topbar-right">
+    <span id="ollama-pill" class="pill pill-wait">checking Ollama...</span>
+    <button id="refresh" class="ghost" type="button">Refresh</button>
+  </div>
+</header>
+
+<p id="banner" class="banner" hidden></p>
+
+<main class="layout">
+
+  <aside class="sidebar">
+
+    <section class="card">
+      <h2>Engine</h2>
+
+      <div class="row">
+        <span class="label">Ollama</span>
+        <span class="value mono" id="ollama-url">-</span>
+      </div>
+      <p class="note bad" id="ollama-error" hidden></p>
+      <p class="note warn" id="missing-models" hidden></p>
+
+      <label class="field">
+        <span class="label">Answering model</span>
+        <select id="llm-model" disabled></select>
+      </label>
+
+      <div class="two-up">
+        <label class="field">
+          <span class="label">Temperature</span>
+          <input id="temperature" type="number" min="0" max="2" step="0.1" disabled>
+        </label>
+        <label class="field">
+          <span class="label">Chunks retrieved</span>
+          <input id="top-k" type="number" min="1" max="20" step="1" disabled>
+        </label>
+      </div>
+      <p class="note" id="settings-note" hidden></p>
+
+      <div class="row">
+        <span class="label">
+          <svg class="lock" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="4" y="10" width="16" height="11" rx="2" fill="currentColor"/>
+          </svg>
+          Embeddings
+        </span>
+        <span class="value mono" id="embed-model">-</span>
+      </div>
+      <p class="note muted" id="embed-reason"></p>
+    </section>
+
+    <section class="card">
+      <h2>Subjects <button type="button" id="new-subject" class="ghost small">New</button></h2>
+
+      <form class="inset" id="create-form" hidden>
+        <label class="field">
+          <span class="label">Name</span>
+          <input id="create-name" type="text" placeholder="one topic, one collection" required>
+        </label>
+        <div class="two-up">
+          <label class="field">
+            <span class="label">Chunk size</span>
+            <input id="create-size" type="number" min="100" step="50" required>
+          </label>
+          <label class="field">
+            <span class="label">Overlap</span>
+            <input id="create-overlap" type="number" min="0" step="10" required>
+          </label>
+        </div>
+        <p class="note muted">
+          Small chunks retrieve precisely, large ones keep more context around
+          each hit. Fixed at creation: changing it later means re-ingesting
+          every PDF in the subject.
+        </p>
+        <p class="note" id="create-note" hidden></p>
+        <div class="actions">
+          <button type="submit">Create</button>
+          <button type="button" class="ghost" id="create-cancel">Cancel</button>
+        </div>
+      </form>
+
+      <ul class="subjects" id="subjects"></ul>
+    </section>
+
+    <section class="card">
+      <h2><span id="pdf-title">PDFs</span> <span class="label" id="pdf-count"></span></h2>
+      <label class="file-drop" id="drop">
+        <span id="drop-text">Drop a PDF here, or click to choose one</span>
+        <input type="file" id="file" accept="application/pdf,.pdf">
+      </label>
+      <p class="note" id="upload-note" hidden></p>
+      <div id="pdfs"></div>
+
+      <div class="pdf-add" id="add-existing" hidden>
+        <span class="label">Already in pdfs/, not in this subject</span>
+        <div class="pdf-actions">
+          <select id="existing-pdf"></select>
+          <button type="button" class="small" id="add-existing-go">Add</button>
+        </div>
+      </div>
+    </section>
+
+  </aside>
+
+  <section class="chat">
+    <header class="chat-head">
+      <label class="field inline">
+        <span class="label">Asking about</span>
+        <select id="chat-subject"></select>
+      </label>
+      <span class="note" id="chat-subject-info"></span>
+      <button type="button" id="clear-chat" class="ghost small push-right" disabled>Clear chat</button>
+    </header>
+
+    <div class="messages" id="messages"></div>
+
+    <form class="composer" id="composer">
+      <textarea id="question" rows="2" disabled
+                placeholder="Ask about this subject. Enter sends, Shift+Enter starts a new line."></textarea>
+      <button type="submit" id="ask" disabled>Ask</button>
+    </form>
+  </section>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
