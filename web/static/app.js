@@ -56,6 +56,8 @@ const SELECTED_KEY = "localrag.subject";
 
 const state = {
   ollama: null,
+  // Whether the Ollama that is running (or missing) is one this app can act on.
+  control: null,
   settings: null,
   missing: [],
   collections: [],
@@ -124,11 +126,10 @@ function renderEngine() {
   pill.textContent = ollama.up ? "Ollama up" : "Ollama unreachable";
 
   $("ollama-url").textContent = ollama.url;
-  setNote(
-    $("ollama-error"),
-    ollama.up ? "" : `${ollama.error || "no answer"} -- start Ollama, then hit Refresh.`,
-    "bad"
-  );
+  // Only what went wrong. What to do about it is the control's line to say,
+  // and it depends on whether there is anything here to start.
+  setNote($("ollama-error"), ollama.up ? "" : `No answer: ${ollama.error || "no reply"}.`, "bad");
+  renderOllamaControl();
   setNote(
     $("missing-models"),
     state.missing.length ? `Not installed: ${state.missing.join(", ")}. Run: ollama pull ${state.missing[0]}` : "",
@@ -189,6 +190,87 @@ async function saveSettings(changes) {
   // note because renderEngine() owns that element too.
   renderEngine();
   setNote(note, message[0], message[1]);
+}
+
+// ---- STARTING AND STOPPING OLLAMA ----
+/* Being told the model server is down is only half an answer, so the panel can
+ * start it. The other half is what the button refuses to do: a server this app
+ * did not start belongs to whoever did start it -- the tray icon, another
+ * terminal -- so the button disappears and the note says where to go instead of
+ * offering a Stop that would kill somebody else's process. */
+let ollamaBusy = null; // the label to show while a start or stop is in flight
+let ollamaNote = null; // what the last attempt had to say, when it failed
+
+function renderOllamaControl() {
+  if (!state.ollama) return;
+  const button = $("ollama-toggle");
+  const note = $("ollama-note");
+  const control = state.control || {};
+  const managed = Boolean(control.managed);
+
+  button.classList.toggle("stop", managed);
+  button.title = control.executable || "";
+
+  if (ollamaBusy) {
+    button.hidden = false;
+    button.disabled = true;
+    button.textContent = ollamaBusy;
+    setNote(note, "A first start takes a few seconds.", "muted");
+    return;
+  }
+
+  // Nothing useful to offer for a server somebody else started, and nothing to
+  // start with if the program is not on this machine.
+  const answering = managed && Boolean(streaming);
+  button.hidden = state.ollama.up && !managed;
+  button.disabled = answering || (!state.ollama.up && !control.executable);
+  button.textContent = managed ? "Stop Ollama" : "Start Ollama";
+
+  let message;
+  let kind = "muted";
+  if (answering) {
+    message = "An answer is being written. Stopping Ollama now would cut it off.";
+    kind = "warn";
+  } else if (managed) {
+    message = `Started here, pid ${control.pid}. It stops when this app stops.`;
+  } else if (state.ollama.up) {
+    message =
+      "Running, but this app did not start it. Stop it where you started it: " +
+      "the tray icon, or the terminal running 'ollama serve'.";
+  } else if (control.executable) {
+    message = "Starts 'ollama serve' on this machine, in the background.";
+  } else {
+    message = "No 'ollama' program found on PATH. Install Ollama, then hit Refresh.";
+    kind = "bad";
+  }
+  // A failure outranks the description: it is the newer news, and it is the
+  // only place the reason will ever be shown.
+  if (ollamaNote) [message, kind] = [ollamaNote.text, ollamaNote.kind];
+  setNote(note, message, kind);
+}
+
+async function toggleOllama() {
+  const stopping = Boolean(state.control && state.control.managed);
+  ollamaBusy = stopping ? "Stopping Ollama..." : "Starting Ollama...";
+  ollamaNote = null;
+  renderOllamaControl();
+  try {
+    await request(stopping ? "/api/ollama/stop" : "/api/ollama/start", { method: "POST" });
+  } catch (error) {
+    // Held in a variable because the refresh below redraws this note from the
+    // server's state, and the server's state has nothing to say about a start
+    // that never happened.
+    ollamaNote = { text: error.message, kind: "bad" };
+  } finally {
+    ollamaBusy = null;
+    // Everything the panel shows just changed: the pill, the installed models,
+    // the picker. Read it all back rather than guess at it.
+    await refresh();
+    // refresh() gives up quietly when it is the local server that has gone
+    // away, and the button must not be left saying "Starting Ollama..." for
+    // the rest of the session.
+    renderOllamaControl();
+  }
 }
 
 // ---- SUBJECT LIST ----
@@ -581,6 +663,9 @@ function setStreaming(controller) {
   $("ask").textContent = controller ? "Stop" : "Ask";
   $("ask").disabled = !controller && !collection(state.selected);
   $("chat-subject").disabled = Boolean(controller) || !state.collections.length;
+  // The Stop Ollama button stands down while an answer is being written: it
+  // would cut off the very answer you are reading.
+  renderOllamaControl();
 }
 
 function follow(turn) {
@@ -824,6 +909,7 @@ async function refresh() {
   try {
     const status = await getJSON("/api/status");
     state.ollama = status.ollama;
+    state.control = status.control;
     state.settings = status.settings;
     state.missing = status.missing_models;
     state.collections = status.collections;
@@ -846,7 +932,13 @@ async function refresh() {
 
 // ---- WIRING ----
 function wire() {
-  $("refresh").addEventListener("click", refresh);
+  $("refresh").addEventListener("click", () => {
+    // Asking for the truth again drops what the last failed start had to say.
+    ollamaNote = null;
+    refresh();
+  });
+
+  $("ollama-toggle").addEventListener("click", toggleOllama);
 
   $("llm-model").addEventListener("change", (event) => saveSettings({ llm_model: event.target.value }));
 

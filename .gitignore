@@ -13,6 +13,9 @@ chroma.sqlite3
 # Machine-local config (llm_model, temperature, top_k...)
 settings.json
 
+# Output of an Ollama server started from the interface
+ollama-serve.log
+
 # Source documents - large binaries, not source code
 pdfs/*.pdf
 

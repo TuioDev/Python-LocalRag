@@ -16,7 +16,9 @@ Both interfaces work.
 the answer being written, with the sources it used listed before it starts; a panel
 showing whether Ollama is up, which models are installed and what each subject
 holds; a model picker; subject creation with its own chunk size; and PDF upload
-with a progress bar. Nothing is served beyond your own machine.
+with a progress bar. If Ollama is not running, one button starts it -- and stops it
+again, though only ever the server the app started itself. Nothing is served beyond
+your own machine.
 
 **Terminal** (`rag.py`) -- the same engine behind an arrow-key menu. Kept as a
 fallback. Only run one of the two at a time: the vector store is SQLite.
@@ -44,7 +46,8 @@ Python 3.12, dependencies managed with `uv`.
 
 ## Running
 
-Ollama has to be running, with the models pulled:
+The models have to be pulled. The Ollama server itself does not have to be running
+-- the web app can start it for you:
 
 ```powershell
 ollama pull nomic-embed-text
@@ -52,8 +55,10 @@ ollama pull qwen3:14b
 .venv\Scripts\python.exe run_web.py
 ```
 
-That opens the app in your browser. Create a subject, upload a PDF into it, wait
-for the bar, then ask away. `--port` moves it; `--no-browser` leaves the tab alone.
+That opens the app in your browser. If the panel says Ollama is unreachable, click
+**Start Ollama**; it stops again with the same button, or on its own when you close
+the app. Create a subject, upload a PDF into it, wait for the bar, then ask away.
+`--port` moves it; `--no-browser` leaves the tab alone.
 
 For the terminal version instead, run `.venv\Scripts\python.exe rag.py`. Either way
 you can also just drop PDFs straight into `pdfs/` and they show up.

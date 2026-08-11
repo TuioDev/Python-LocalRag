@@ -23,7 +23,10 @@ from __future__ import annotations
 import asyncio
 import json
 import sqlite3
+import subprocess
+import time
 import uuid
+from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import AsyncIterator
@@ -31,13 +34,13 @@ from typing import AsyncIterator
 from chromadb.errors import ChromaError
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict
 from sse_starlette.sse import EventSourceResponse
 
-from rag_core import chain, health, ingest, store
+from rag_core import chain, health, ingest, ollama_server, store
 from rag_core.config import (
     EMBED_MODEL,
     OLLAMA_URL,
@@ -56,11 +59,49 @@ EMBED_LOCK_REASON = (
     "change in code, with a re-ingest."
 )
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    """On the way out, stop the Ollama we started.
+
+    Only that one. An `ollama serve` spawned by the Start button has no console
+    window and no tray icon, so leaving it behind would leave the user with a
+    model server they have no obvious way to find, let alone stop. A server that
+    was already running when the app opened is untouched: it was never ours.
+    """
+    yield
+    if ollama_server.managed() is not None:
+        await run_blocking(ollama_server.stop)
+
+
+# "no-cache" is badly named: it does not mean "keep no copy", it means "ask me
+# before you use the copy you have". Without it the browser is left to guess how
+# long app.js stays good for, and it guesses generously -- which is how a page
+# ends up running the JavaScript from before the last change while the server
+# happily serves the new one. With it, every load revalidates: unchanged files
+# come back as an empty 304 and the browser reuses what it already had.
+NO_CACHE = {"cache-control": "no-cache"}
+
+
+class RevalidatedStatic(StaticFiles):
+    """StaticFiles that asks the browser to check back every time.
+
+    The header goes on whatever came out, 200 or 304, because the not-modified
+    reply is built inside the parent before this can reach it -- and a 304
+    without the header would teach the browser to stop asking again.
+    """
+
+    def file_response(self, *args, **kwargs) -> Response:
+        response = super().file_response(*args, **kwargs)
+        response.headers.update(NO_CACHE)
+        return response
+
+
 # docs_url is off on purpose: the Swagger page pulls its assets from a CDN, and
 # an app whose whole point is running offline should not ship a route that only
 # works online.
-app = FastAPI(title="Local RAG", docs_url=None, redoc_url=None)
-app.mount("/static", StaticFiles(directory=WEB_DIR / "static"), name="static")
+app = FastAPI(title="Local RAG", docs_url=None, redoc_url=None, lifespan=lifespan)
+app.mount("/static", RevalidatedStatic(directory=WEB_DIR / "static"), name="static")
 templates = Jinja2Templates(directory=WEB_DIR / "templates")
 
 
@@ -102,11 +143,18 @@ def _status_for(exc: Exception) -> int:
         return 409
     if isinstance(exc, (store.InvalidCollectionName, ConfigError)):
         return 400
+    # Ollama already running, or running under somebody else: a conflict with
+    # the state of the machine, not a bad request.
+    if isinstance(exc, (ollama_server.AlreadyRunning, ollama_server.NotManaged)):
+        return 409
+    if isinstance(exc, ollama_server.ExecutableNotFound):
+        return 503
     return 500
 
 
 @app.exception_handler(store.StoreError)
 @app.exception_handler(ConfigError)
+@app.exception_handler(ollama_server.OllamaControlError)
 async def _engine_error(request: Request, exc: Exception) -> JSONResponse:
     """The engine raises, the interface reports -- here, as JSON."""
     return JSONResponse({"error": str(exc)}, status_code=_status_for(exc))
@@ -177,7 +225,9 @@ def collections_payload() -> list[dict]:
 # ---- PAGE ----
 @app.get("/")
 async def index(request: Request):
-    return templates.TemplateResponse(request, "index.html")
+    # The page carries the ids app.js reaches for, so a stale copy of it breaks
+    # the same way a stale script does.
+    return templates.TemplateResponse(request, "index.html", headers=NO_CACHE)
 
 
 # ---- STATUS ----
@@ -192,6 +242,7 @@ async def api_status(request: Request) -> dict:
     ollama = await health.acheck()
     return {
         "ollama": asdict(ollama),
+        "control": asdict(ollama_server.control()),
         "missing_models": health.missing_models(ollama, state.settings),
         "settings": settings_payload(),
         "collections": await run_blocking(collections_payload),
@@ -201,6 +252,76 @@ async def api_status(request: Request) -> dict:
 @app.get("/api/collections")
 async def api_collections() -> list[dict]:
     return await run_blocking(collections_payload)
+
+
+# ---- OLLAMA PROCESS ----
+# Being told the server is down is only half an answer, so the panel can start
+# it. What it will not do is stop a server it did not start -- see the two rules
+# in rag_core/ollama_server.py.
+OLLAMA_LOCK = asyncio.Lock()
+OLLAMA_READY_TIMEOUT = 60.0
+OLLAMA_POLL_SECONDS = 0.4
+
+
+def ollama_payload(ollama: health.Health) -> dict:
+    """What the page needs to redraw the pill and the button together."""
+    return {"ollama": asdict(ollama), "control": asdict(ollama_server.control())}
+
+
+@app.post("/api/ollama/start")
+async def api_ollama_start() -> dict:
+    """Start the model server and wait until it actually answers.
+
+    Waiting is the point. Returning as soon as the process exists would report
+    success for a server that is still binding its port, or that is about to die
+    on one already taken -- and the page would then blame the first question.
+    """
+    if OLLAMA_LOCK.locked():
+        raise HTTPException(409, "Ollama is already being started or stopped. Give it a moment.")
+
+    async with OLLAMA_LOCK:
+        current = await health.acheck()
+        if current.up:
+            raise HTTPException(409, f"Ollama is already answering at {current.url}.")
+        process = await run_blocking(ollama_server.start)
+        return ollama_payload(await wait_until_up(process))
+
+
+async def wait_until_up(process: subprocess.Popen) -> health.Health:
+    """Poll /api/tags until the new server answers, dies, or runs out of time.
+
+    The poll() is the fast path: a server that cannot bind its port is gone in
+    well under a second, and there is no reason to sit through the whole timeout
+    when the child is already dead and its log says why.
+    """
+    deadline = time.monotonic() + OLLAMA_READY_TIMEOUT
+    while True:
+        current = await health.acheck(timeout=2.0)
+        if current.up:
+            return current
+        if process.poll() is not None:
+            tail = await run_blocking(ollama_server.log_tail)
+            detail = f" It said:\n{tail}" if tail else ""
+            raise HTTPException(500, f"Ollama started and stopped immediately.{detail}")
+        if time.monotonic() >= deadline:
+            raise HTTPException(
+                504,
+                f"Ollama did not answer within {int(OLLAMA_READY_TIMEOUT)} seconds. "
+                "It may still be starting -- hit Refresh in a moment.",
+            )
+        await asyncio.sleep(OLLAMA_POLL_SECONDS)
+
+
+@app.post("/api/ollama/stop")
+async def api_ollama_stop() -> dict:
+    """Stop the server this app started. NotManaged -> 409, and the page says
+    where the running one actually came from."""
+    if OLLAMA_LOCK.locked():
+        raise HTTPException(409, "Ollama is already being started or stopped. Give it a moment.")
+
+    async with OLLAMA_LOCK:
+        await run_blocking(ollama_server.stop)
+        return ollama_payload(await health.acheck())
 
 
 # ---- SETTINGS ----

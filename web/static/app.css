@@ -145,6 +145,16 @@ body {
 .note.ok { color: var(--ok); }
 .note.muted { color: var(--muted); opacity: .85; }
 
+/* The start/stop button sits under the Ollama row and spans the card, so it
+   reads as an action on the thing named directly above it. */
+.control-row { display: flex; gap: 8px; margin-top: 8px; }
+.control-row button { flex: 1; }
+.control-row button.stop { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+.control-row button.stop:hover:not(:disabled) { background: color-mix(in srgb, var(--bad) 10%, transparent); }
+.control-row:has(button[hidden]) { display: none; }
+/* A start that failed quotes Ollama's own log back, and that only reads as lines. */
+#ollama-note { white-space: pre-wrap; }
+
 .field { display: block; margin-top: 12px; }
 .field .label { display: block; margin-bottom: 4px; }
 .field.inline { display: flex; align-items: center; gap: 8px; margin-top: 0; }
