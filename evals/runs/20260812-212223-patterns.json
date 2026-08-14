@@ -1,0 +1,880 @@
+{
+  "started_at": "2026-08-12T21:22:23+00:00",
+  "collection": "patterns",
+  "config": {
+    "top_k": 10,
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "legacy_chunking": true,
+    "embed_model": "nomic-embed-text",
+    "page_window": 1
+  },
+  "metrics": {
+    "questions_scored": 12,
+    "questions_absent": 1,
+    "recall@1": 0.5833,
+    "recall@4": 0.8333,
+    "recall@8": 0.8333,
+    "recall@10": 0.8333,
+    "mrr": 0.7083,
+    "mean_seconds": 0.0406
+  },
+  "questions": [
+    {
+      "id": "pat-jargon-double-buffer",
+      "kind": "jargon",
+      "question": "What is the intent of the Double Buffer pattern?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 146
+        }
+      ],
+      "hit_rank": 2,
+      "seconds": 0.0396,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 163
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 146
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 153
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 157
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 167
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 145
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 161
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 150
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 164
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 151
+        }
+      ]
+    },
+    {
+      "id": "pat-jargon-subclass-sandbox",
+      "kind": "jargon",
+      "question": "When should I use the Subclass Sandbox pattern?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 250
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0399,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 250
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 255
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 211
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 249
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 262
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 245
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 247
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 252
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 48
+        },
+        {
+          "rank": 10,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 128
+        }
+      ]
+    },
+    {
+      "id": "pat-jargon-liskov",
+      "kind": "jargon",
+      "question": "What does the Liskov Substitution Principle state?",
+      "expected": [
+        {
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 19
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.04,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 19
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 166
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 130
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 300
+        },
+        {
+          "rank": 5,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 126
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 161
+        },
+        {
+          "rank": 7,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 212
+        },
+        {
+          "rank": 8,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 12
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 141
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 284
+        }
+      ]
+    },
+    {
+      "id": "pat-jargon-service-locator",
+      "kind": "jargon",
+      "question": "What is a service locator and what is its role?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 337
+        },
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 340
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0396,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 337
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 339
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 340
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 342
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 356
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 354
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 352
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 341
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 353
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 286
+        }
+      ]
+    },
+    {
+      "id": "pat-para-tearing",
+      "kind": "paraphrase",
+      "question": "The screen keeps showing half of the old picture and half of the new one while it is still being drawn. How is that avoided?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 147
+        }
+      ],
+      "hit_rank": 2,
+      "seconds": 0.0439,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 149
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 148
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 147
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 155
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 164
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 150
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 157
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 148
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 150
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 156
+        }
+      ]
+    },
+    {
+      "id": "pat-para-recompute",
+      "kind": "paraphrase",
+      "question": "How do I stop redoing an expensive calculation every frame when the thing it depends on almost never changes?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 390
+        },
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 391
+        }
+      ],
+      "hit_rank": 2,
+      "seconds": 0.04,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 399
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 391
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 390
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 390
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 405
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 399
+        },
+        {
+          "rank": 7,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 240
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 393
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 179
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 179
+        }
+      ]
+    },
+    {
+      "id": "pat-para-notify",
+      "kind": "paraphrase",
+      "question": "One object needs to let several unrelated others know that something happened, without knowing anything about them. How is that normally arranged?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 65
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0397,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 66
+        },
+        {
+          "rank": 2,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 230
+        },
+        {
+          "rank": 3,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 26
+        },
+        {
+          "rank": 4,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 251
+        },
+        {
+          "rank": 5,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 27
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 331
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 309
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 334
+        },
+        {
+          "rank": 9,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 27
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 77
+        }
+      ]
+    },
+    {
+      "id": "pat-para-smaller-faster",
+      "kind": "paraphrase",
+      "question": "Why does making my objects take up less room make a loop over them run quicker?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 365
+        }
+      ],
+      "hit_rank": null,
+      "seconds": 0.0402,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 198
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 373
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 232
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 435
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 56
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 176
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 70
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 403
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 171
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 375
+        }
+      ]
+    },
+    {
+      "id": "pat-span-observer-remove",
+      "kind": "spanning",
+      "question": "How can an observer be taken off the subject's list in constant time?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 72
+        },
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 73
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0399,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 73
+        },
+        {
+          "rank": 2,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 34
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 73
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 75
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 70
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 75
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 73
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 68
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 70
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 66
+        }
+      ]
+    },
+    {
+      "id": "pat-span-singleton-trouble",
+      "kind": "spanning",
+      "question": "What does the capital cities database example show is wrong with the Singleton pattern?",
+      "expected": [
+        {
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 87
+        },
+        {
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 88
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0409,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 88
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 101
+        },
+        {
+          "rank": 3,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 87
+        },
+        {
+          "rank": 4,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 88
+        },
+        {
+          "rank": 5,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 87
+        },
+        {
+          "rank": 6,
+          "pdf": "RDZ - C__ Design Patterns_ The Easy Way Standard Solutions for Everyday Programming Problems.pdf",
+          "page": 45
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 118
+        },
+        {
+          "rank": 8,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 84
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 356
+        },
+        {
+          "rank": 10,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 92
+        }
+      ]
+    },
+    {
+      "id": "pat-spec-karlton",
+      "kind": "specific",
+      "question": "Who is quoted as saying there are only two hard things in computer science?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 398
+        }
+      ],
+      "hit_rank": null,
+      "seconds": 0.0405,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 360
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 179
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 19
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 27
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 364
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 169
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 122
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 119
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 360
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 357
+        }
+      ]
+    },
+    {
+      "id": "pat-spec-cache-line-size",
+      "kind": "specific",
+      "question": "How many bytes does a cache line usually hold?",
+      "expected": [
+        {
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 363
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0398,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 363
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 363
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 365
+        },
+        {
+          "rank": 4,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 217
+        },
+        {
+          "rank": 5,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 207
+        },
+        {
+          "rank": 6,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 102
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 364
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 323
+        },
+        {
+          "rank": 9,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 367
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 365
+        }
+      ]
+    },
+    {
+      "id": "pat-absent-cap-theorem",
+      "kind": "absent",
+      "question": "What does the CAP theorem say about distributed databases?",
+      "expected": [],
+      "hit_rank": null,
+      "seconds": 0.0439,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 12
+        },
+        {
+          "rank": 2,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 300
+        },
+        {
+          "rank": 3,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 70
+        },
+        {
+          "rank": 4,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 116
+        },
+        {
+          "rank": 5,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 204
+        },
+        {
+          "rank": 6,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 394
+        },
+        {
+          "rank": 7,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 311
+        },
+        {
+          "rank": 8,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 309
+        },
+        {
+          "rank": 9,
+          "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf",
+          "page": 327
+        },
+        {
+          "rank": 10,
+          "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf",
+          "page": 386
+        }
+      ]
+    }
+  ]
+}

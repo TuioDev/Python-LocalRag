@@ -194,6 +194,26 @@ def pdfs_in(name: str) -> set[str]:
     return {m["source_pdf"] for m in data["metadatas"] or [] if m and m.get("source_pdf")}
 
 
+def pages_in(name: str) -> dict[str, set[int]]:
+    """Which pages of which PDF actually produced chunks.
+
+    A page with no text layer produces no chunk and can therefore never be
+    retrieved. The evaluation harness checks its ground truth against this, so
+    an unreachable page is reported as a broken question rather than scored as
+    a miss the retriever is blamed for.
+    """
+    data = _collection(name).get(include=["metadatas"])
+    pages: dict[str, set[int]] = {}
+    for meta in data["metadatas"] or []:
+        if not meta:
+            continue
+        pdf, page = meta.get("source_pdf"), meta.get("page")
+        if pdf is None or page is None:
+            continue
+        pages.setdefault(pdf, set()).add(int(page))
+    return pages
+
+
 def stats(name: str, settings: Settings) -> CollectionStats:
     collection = _collection(name)
     meta = collection.metadata or {}

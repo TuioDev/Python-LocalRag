@@ -1,0 +1,543 @@
+{
+  "started_at": "2026-08-12T21:22:23+00:00",
+  "collection": "perspective",
+  "config": {
+    "top_k": 10,
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "legacy_chunking": false,
+    "embed_model": "nomic-embed-text",
+    "page_window": 1
+  },
+  "metrics": {
+    "questions_scored": 7,
+    "questions_absent": 1,
+    "recall@1": 0.7143,
+    "recall@4": 1.0,
+    "recall@8": 1.0,
+    "recall@10": 1.0,
+    "mrr": 0.8571,
+    "mean_seconds": 0.0417
+  },
+  "questions": [
+    {
+      "id": "per-jargon-station-point",
+      "kind": "jargon",
+      "question": "What does the station point represent?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 79
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0398,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 79
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 79
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 80
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 81
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 202
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 148
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 81
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 148
+        }
+      ]
+    },
+    {
+      "id": "per-jargon-long-diameter",
+      "kind": "jargon",
+      "question": "Is the long diameter of an ellipse a structural line of the object it represents?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 126
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0405,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 126
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 129
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 124
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 125
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 165
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 135
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 132
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 129
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 124
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 175
+        }
+      ]
+    },
+    {
+      "id": "per-para-leaning-verticals",
+      "kind": "paraphrase",
+      "question": "I am looking up at a tall building and its upright edges seem to lean towards each other as they rise. What kind of drawing handles that?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 213
+        }
+      ],
+      "hit_rank": 2,
+      "seconds": 0.041,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 83
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 214
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 214
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 44
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 165
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 216
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 181
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 209
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 207
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 256
+        }
+      ]
+    },
+    {
+      "id": "per-para-lamppost",
+      "kind": "paraphrase",
+      "question": "How do I work out where the dark patch cast by a street lamp falls on the ground?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 251
+        }
+      ],
+      "hit_rank": 2,
+      "seconds": 0.0441,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 244
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 251
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 250
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 252
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 250
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 247
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 251
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 252
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 246
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 244
+        }
+      ]
+    },
+    {
+      "id": "per-para-sleepers",
+      "kind": "paraphrase",
+      "question": "Why do the wooden crossbars of a railway seem to bunch closer together the further off they are?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 94
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.041,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 150
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 143
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 154
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 94
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 154
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 143
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 150
+        }
+      ]
+    },
+    {
+      "id": "per-span-reflections",
+      "kind": "spanning",
+      "question": "What is the rule about the line joining an object to its reflection in a mirror?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 239
+        },
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 240
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0417,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 240
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 240
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 239
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 236
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 236
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 235
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 235
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 83
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 95
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 129
+        }
+      ]
+    },
+    {
+      "id": "per-spec-seven-vanishing-points",
+      "kind": "specific",
+      "question": "Which chapter is called the House of Seven Vanishing Points?",
+      "expected": [
+        {
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 178
+        }
+      ],
+      "hit_rank": 1,
+      "seconds": 0.0451,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 178
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 179
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 148
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 178
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 203
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 181
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 202
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 84
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 200
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 213
+        }
+      ]
+    },
+    {
+      "id": "per-absent-paint-mixing",
+      "kind": "absent",
+      "question": "How do I mix cadmium red with white to get a convincing skin tone?",
+      "expected": [],
+      "hit_rank": null,
+      "seconds": 0.0403,
+      "retrieved": [
+        {
+          "rank": 1,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 252
+        },
+        {
+          "rank": 2,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 253
+        },
+        {
+          "rank": 3,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 39
+        },
+        {
+          "rank": 4,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 91
+        },
+        {
+          "rank": 5,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 44
+        },
+        {
+          "rank": 6,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 240
+        },
+        {
+          "rank": 7,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 21
+        },
+        {
+          "rank": 8,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 121
+        },
+        {
+          "rank": 9,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 219
+        },
+        {
+          "rank": 10,
+          "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf",
+          "page": 123
+        }
+      ]
+    }
+  ]
+}

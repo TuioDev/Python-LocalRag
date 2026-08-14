@@ -1,0 +1,185 @@
+[
+  {
+    "id": "pat-jargon-double-buffer",
+    "collection": "patterns",
+    "kind": "jargon",
+    "question": "What is the intent of the Double Buffer pattern?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 146 }],
+    "evidence": "Double Buffer Intent Cause a series of sequential operations to appear instantaneous or simultaneous."
+  },
+  {
+    "id": "pat-jargon-subclass-sandbox",
+    "collection": "patterns",
+    "kind": "jargon",
+    "question": "When should I use the Subclass Sandbox pattern?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 250 }],
+    "evidence": "When to Use It The Subclass Sandbox pattern is a very simple, common pattern lurking in lots of codebases, even outside of games."
+  },
+  {
+    "id": "pat-jargon-liskov",
+    "collection": "patterns",
+    "kind": "jargon",
+    "question": "What does the Liskov Substitution Principle state?",
+    "expected": [{ "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf", "page": 19 }],
+    "evidence": "The Liskov Substitution Principle, named after Barbara Liskov, states that if an interface takes an object of ..."
+  },
+  {
+    "id": "pat-jargon-service-locator",
+    "collection": "patterns",
+    "kind": "jargon",
+    "question": "What is a service locator and what is its role?",
+    "expected": [
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 337 },
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 340 }
+    ],
+    "evidence": "p337: 'Service Locator Intent Provide a global point of access to a service without coupling users to the concrete class that implements it.' p340: 'The Pattern A service class defines an abstract interface to a set of operations.' Corrected from p344, which is sample code rather than the definition this question asks for."
+  },
+  {
+    "id": "pat-para-tearing",
+    "collection": "patterns",
+    "kind": "paraphrase",
+    "question": "The screen keeps showing half of the old picture and half of the new one while it is still being drawn. How is that avoided?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 147 }],
+    "evidence": "displaying a series of complete frames, each appearing instantly. Double buffering solves this problem, but to understand how ..."
+  },
+  {
+    "id": "pat-para-recompute",
+    "collection": "patterns",
+    "kind": "paraphrase",
+    "question": "How do I stop redoing an expensive calculation every frame when the thing it depends on almost never changes?",
+    "expected": [
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 390 },
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 391 }
+    ],
+    "evidence": "p390: 'Recalculating their world transforms each frame even though they havent changed is a waste.' Corrected from p395, a late design-decisions page; the motivation for the pattern is what this question asks for."
+  },
+  {
+    "id": "pat-para-notify",
+    "collection": "patterns",
+    "kind": "paraphrase",
+    "question": "One object needs to let several unrelated others know that something happened, without knowing anything about them. How is that normally arranged?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 65 }],
+    "evidence": "that object is called the subject. It has two jobs. First, it holds the list of observers that are waiting oh-so-patiently for a missive from it."
+  },
+  {
+    "id": "pat-para-smaller-faster",
+    "collection": "patterns",
+    "kind": "paraphrase",
+    "question": "Why does making my objects take up less room make a loop over them run quicker?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 365 }],
+    "evidence": "whenever the chip reads some memory, it gets a whole cache line. The more you can use stuff in that cache line, the faster you go."
+  },
+  {
+    "id": "pat-span-observer-remove",
+    "collection": "patterns",
+    "kind": "spanning",
+    "question": "How can an observer be taken off the subject's list in constant time?",
+    "expected": [
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 72 },
+      { "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 73 }
+    ],
+    "evidence": "If we use a doubly linked list, where each observer has a pointer to both the observer after it and before it, we can remove an observer in constant time."
+  },
+  {
+    "id": "pat-span-singleton-trouble",
+    "collection": "patterns",
+    "kind": "spanning",
+    "question": "What does the capital cities database example show is wrong with the Singleton pattern?",
+    "expected": [
+      { "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf", "page": 87 },
+      { "pdf": "Dmitri Nesteruk - Design Patterns in C#-leanpub.com (2018).pdf", "page": 88 }
+    ],
+    "evidence": "The Trouble with Singleton. Let us now consider a concrete example of a Singleton. Suppose that our database contains a list of capital cities and their populations."
+  },
+  {
+    "id": "pat-spec-karlton",
+    "collection": "patterns",
+    "kind": "specific",
+    "question": "Who is quoted as saying there are only two hard things in computer science?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 398 }],
+    "evidence": "Phil Karlton famously said, There are only two hard things in Computer Science: cache invalidation and naming things."
+  },
+  {
+    "id": "pat-spec-cache-line-size",
+    "collection": "patterns",
+    "kind": "specific",
+    "question": "How many bytes does a cache line usually hold?",
+    "expected": [{ "pdf": "Robert_Nystrom__Game_Programming_Patterns.pdf", "page": 363 }],
+    "evidence": "usually around 64 to 128 bytes and puts it in the cache. This dollop of memory is called a cache line."
+  },
+  {
+    "id": "pat-absent-cap-theorem",
+    "collection": "patterns",
+    "kind": "absent",
+    "question": "What does the CAP theorem say about distributed databases?",
+    "expected": [],
+    "evidence": "Verified absent: 'CAP theorem', 'consensus' and 'eventual consistency' match zero chunks in this subject."
+  },
+  {
+    "id": "per-jargon-station-point",
+    "collection": "perspective",
+    "kind": "jargon",
+    "question": "What does the station point represent?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 79 }],
+    "evidence": "The station point represents the eye of the observer. It may be any distance from the picture plane according to the effect desired."
+  },
+  {
+    "id": "per-jargon-long-diameter",
+    "collection": "perspective",
+    "kind": "jargon",
+    "question": "Is the long diameter of an ellipse a structural line of the object it represents?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 126 }],
+    "evidence": "the long diameter of the ellipse is not a structural line of the object: it is merely an imaginary line-useful only for drawing purposes."
+  },
+  {
+    "id": "per-para-leaning-verticals",
+    "collection": "perspective",
+    "kind": "paraphrase",
+    "question": "I am looking up at a tall building and its upright edges seem to lean towards each other as they rise. What kind of drawing handles that?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 213 }],
+    "evidence": "chapter xiii THREE-POINT PERSPECTIVE. Until comparatively recent times no one ever thought of rendering a vertical line other than ..."
+  },
+  {
+    "id": "per-para-lamppost",
+    "collection": "perspective",
+    "kind": "paraphrase",
+    "question": "How do I work out where the dark patch cast by a street lamp falls on the ground?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 251 }],
+    "evidence": "to find the shadows we drop a vertical from the light source to a point on the ground-it is in a horizontal line that passes through the pole's base."
+  },
+  {
+    "id": "per-para-sleepers",
+    "collection": "perspective",
+    "kind": "paraphrase",
+    "question": "Why do the wooden crossbars of a railway seem to bunch closer together the further off they are?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 94 }],
+    "evidence": "chapter vi FORESHORTENING AND CONVERGENCE ... to use the railroad track to demonstrate the simplest of all perspective facts: the fact that objects appear progressively ..."
+  },
+  {
+    "id": "per-span-reflections",
+    "collection": "perspective",
+    "kind": "spanning",
+    "question": "What is the rule about the line joining an object to its reflection in a mirror?",
+    "expected": [
+      { "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 239 },
+      { "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 240 }
+    ],
+    "evidence": "pass through the mirror at right angles to it. That is what we always must remember about reflections."
+  },
+  {
+    "id": "per-spec-seven-vanishing-points",
+    "collection": "perspective",
+    "kind": "specific",
+    "question": "Which chapter is called the House of Seven Vanishing Points?",
+    "expected": [{ "pdf": "ART - Creative-Perspective-for-Artists-and-Illustrators-by-Ernest-W.-Watson-_z-lib.org_.pdf", "page": 178 }],
+    "evidence": "chapter ix THE HOUSE OF SEVEN VANISHING POINTS. The House of Seven Vanishing Points may look confusing to the beginner ..."
+  },
+  {
+    "id": "per-absent-paint-mixing",
+    "collection": "perspective",
+    "kind": "absent",
+    "question": "How do I mix cadmium red with white to get a convincing skin tone?",
+    "expected": [],
+    "evidence": "Verified absent: 'cadmium', 'pigment', 'skin tone' and 'mixing' match zero chunks in this subject."
+  }
+]
